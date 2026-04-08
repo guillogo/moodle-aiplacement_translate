@@ -1,0 +1,22 @@
+{{!
+    @template aiplacement_translate/action_button
+
+    The translate button that appears alongside Summarise / Explain.
+
+    Example context (json): {}
+}}
+<div class="translate-controls py-3">
+    <button class="btn btn-outline-secondary ai-translate-btn"
+            type="button"
+            title="{{#str}} translate_tooltips, aiplacement_translate {{/str}}"
+            data-action="translate_text"
+            data-bs-toggle="tooltip"
+            data-bs-placement="right"
+            aria-controls="ai-translate-drawer"
+            data-input-type="action"
+            data-bs-delay="200">
+        {{#pix}} i/multilang, core {{/pix}}
+        {{#str}} translate, aiplacement_translate {{/str}}
+    </button>
+</div>
+

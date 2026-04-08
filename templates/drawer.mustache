@@ -1,0 +1,36 @@
+{{!
+    @template aiplacement_translate/drawer
+
+    The translate drawer with language picker.
+
+    Example context (json):
+    { "userid": 2, "contextid": 45, "languages": [{"code":"es","name":"Spanish"}] }
+}}
+<div class="ai-translate-drawer" id="ai-translate-drawer"
+     aria-label={{#quote}}{{#str}} translatepanellabel, aiplacement_translate {{/str}}{{/quote}}
+     tabindex="-1" role="region">
+    <div class="ai-drawer-header d-flex align-items-center" style="height:60px">
+        <button id="ai-translate-close" class="btn ai-drawer-button ms-auto me-1" type="button">
+            {{#pix}} e/cancel, core {{/pix}}
+            <span class="visually-hidden">{{#str}} closedrawer, core {{/str}}</span>
+        </button>
+    </div>
+    <div class="ai-drawer-body p-3" id="ai-translate-body" style="overflow-y:auto;height:calc(100vh - 120px)">
+        <label for="ai-translate-lang" class="form-label fw-bold">
+            {{#str}} selectlanguage, aiplacement_translate {{/str}}
+        </label>
+        <select id="ai-translate-lang" class="form-select mb-3">
+            <option value="">{{#str}} chooselanguage, aiplacement_translate {{/str}}</option>
+            {{#languages}}
+            <option value="{{code}}">{{name}}</option>
+            {{/languages}}
+        </select>
+        <div id="ai-translate-result"></div>
+    </div>
+</div>
+{{#js}}
+require(['aiplacement_translate/placement'], function(Mod) {
+    new Mod({{userid}}, {{contextid}});
+});
+{{/js}}
+

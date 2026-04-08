@@ -1,0 +1,19 @@
+.ai-translate-drawer {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    right: calc(-315px - 10px);
+    width: 315px;
+    background-color: #f8f9fa;
+    z-index: 1016;
+    transition: right .2s ease, visibility .2s ease;
+    visibility: hidden;
+}
+.ai-translate-drawer.show {
+    right: 0;
+    visibility: visible;
+}
+.translate-controls .icon {
+    margin-right: 0;
+}
+
