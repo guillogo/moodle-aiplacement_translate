@@ -8,12 +8,11 @@ When viewing an activity that has AI features enabled, a **Translate** button ap
 
 | Requirement | Version |
 |---|---|
-| Moodle | 5.1+ (2025100600) |
+| Moodle | 4.5+ (2024100700) |
 | PHP | 8.1+ |
-| `aiplacement_courseassist` | Any version (ships with Moodle core) |
 | At least one AI provider configured with the **Generate text** action enabled | — |
 
-> **Note:** The `public/ai/placement/` directory structure and the AI subsystem hooks used by this plugin were introduced in Moodle 5.1. On Moodle 5.2+ the plugin additionally respects the `get_ai_visibility_hint()` page-level toggle.
+> **Note:** This is the `MOODLE_405_STABLE` branch. For Moodle 5.1+ use the `main` branch instead, which lives under `public/ai/placement/`. On Moodle 5.2+ the plugin additionally respects the `get_ai_visibility_hint()` page-level toggle.
 
 ## Installation
 
@@ -21,7 +20,7 @@ When viewing an activity that has AI features enabled, a **Translate** button ap
 
 ```bash
 cd /path/to/moodle/ai/placement
-git clone https://github.com/guillogo/moodle-aiplacement_translate.git translate
+git clone -b MOODLE_405_STABLE https://github.com/guillogo/moodle-aiplacement_translate.git translate
 ```
 
 ### Manual download

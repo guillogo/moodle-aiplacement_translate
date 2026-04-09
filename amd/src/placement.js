@@ -184,7 +184,7 @@ const AITranslate = class {
                 return;
             }
             if (res.error) {
-                this._showError(res.error, res.errormessage);
+                this._showError(res.error);
                 return;
             }
             const content = AIHelper.formatResponse(res.generatedcontent);

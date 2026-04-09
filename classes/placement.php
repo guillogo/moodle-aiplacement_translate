@@ -26,7 +26,7 @@ namespace aiplacement_translate;
 class placement extends \aiplacement_courseassist\placement {
 
     #[\Override]
-    public static function get_action_list(): array {
+    public function get_action_list(): array {
         return [
             \core_ai\aiactions\generate_text::class,
         ];

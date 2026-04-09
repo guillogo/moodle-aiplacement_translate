@@ -34,12 +34,7 @@ class utils {
      * @return bool True if translate placement is available, false otherwise.
      */
     public static function is_translate_available(): bool {
-        // Re-use courseassist availability (checks plugin enabled).
-        if (!\aiplacement_courseassist\utils::is_course_assist_available()) {
-            return false;
-        }
-
-        // Our own plugin must also be enabled.
+        // Check our own plugin is enabled.
         [$plugintype, $pluginname] = explode(
             '_',
             \core_component::normalize_componentname('aiplacement_translate'),
@@ -51,8 +46,7 @@ class utils {
         }
 
         // At least one provider must support generate_text.
-        $mgr = \core\di::get(manager::class);
-        return $mgr->is_action_available(generate_text::class);
+        return manager::is_action_available(generate_text::class);
     }
 
     /**

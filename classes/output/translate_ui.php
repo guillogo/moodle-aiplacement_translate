@@ -73,8 +73,7 @@ class translate_ui {
             return;
         }
 
-        $manager = \core\di::get(manager::class);
-        if (!$manager->is_action_available(generate_text::class)) {
+        if (!manager::is_action_available(generate_text::class)) {
             return;
         }
 
