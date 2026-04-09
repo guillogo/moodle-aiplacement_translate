@@ -27,7 +27,6 @@ use core\hook\output\before_footer_html_generation;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class hook_callbacks {
-
     /**
      * Bootstrap the translate UI.
      *
@@ -46,4 +45,3 @@ class hook_callbacks {
         output\translate_ui::action_buttons_handler($hook);
     }
 }
-

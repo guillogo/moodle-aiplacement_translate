@@ -27,7 +27,6 @@ use core_ai\manager;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class utils {
-
     /**
      * Check if the translate placement is usable.
      *
@@ -83,4 +82,3 @@ class utils {
         return $code;
     }
 }
-
