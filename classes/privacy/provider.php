@@ -27,10 +27,8 @@ use core_privacy\local\metadata\null_provider;
  * @codeCoverageIgnore
  */
 class provider implements null_provider {
-
     #[\Override]
     public static function get_reason(): string {
         return 'privacy:metadata';
     }
 }
-

@@ -28,7 +28,7 @@ $plugin->component = 'aiplacement_translate';
 $plugin->version = 2026040701;
 $plugin->requires = 2024100700;
 $plugin->maturity = MATURITY_ALPHA;
+$plugin->supported = [405, 500];
 $plugin->dependencies = [
     'aiplacement_courseassist' => ANY_VERSION,
 ];
-

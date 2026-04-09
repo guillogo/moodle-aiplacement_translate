@@ -33,4 +33,3 @@ $functions = [
         'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],
     ],
 ];
-
