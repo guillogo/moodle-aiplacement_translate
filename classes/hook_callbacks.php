@@ -16,26 +16,33 @@
 
 namespace aiplacement_translate;
 
+use core\hook\output\after_http_headers;
+use core\hook\output\before_footer_html_generation;
+
 /**
- * Hook callbacks for the translate placement.
+ * Hook callbacks for the translate AI Placement.
  *
  * @package    aiplacement_translate
- * @copyright  2026 Moodle Pty Ltd
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class hook_callbacks {
 
     /**
-     * @param \core\hook\output\before_footer_html_generation $hook
+     * Bootstrap the translate UI.
+     *
+     * @param before_footer_html_generation $hook
      */
-    public static function before_footer_html_generation(\core\hook\output\before_footer_html_generation $hook): void {
+    public static function before_footer_html_generation(before_footer_html_generation $hook): void {
         output\translate_ui::load_translate_ui($hook);
     }
 
     /**
-     * @param \core\hook\output\after_http_headers $hook
+     * Bootstrap the action buttons.
+     *
+     * @param after_http_headers $hook
      */
-    public static function after_http_headers(\core\hook\output\after_http_headers $hook): void {
+    public static function after_http_headers(after_http_headers $hook): void {
         output\translate_ui::action_buttons_handler($hook);
     }
 }

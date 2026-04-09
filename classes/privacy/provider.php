@@ -19,14 +19,16 @@ namespace aiplacement_translate\privacy;
 use core_privacy\local\metadata\null_provider;
 
 /**
- * Privacy provider — no personal data stored.
+ * Privacy Subsystem for translate placement implementing null_provider.
  *
  * @package    aiplacement_translate
- * @copyright  2026 Moodle Pty Ltd
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @codeCoverageIgnore
  */
 class provider implements null_provider {
-    /** @inheritDoc */
+
+    #[\Override]
     public static function get_reason(): string {
         return 'privacy:metadata';
     }

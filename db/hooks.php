@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Hook callbacks for aiplacement_translate.
+ * Hook callbacks for the translate placement.
  *
  * @package    aiplacement_translate
- * @copyright  2026 Moodle Pty Ltd
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -26,12 +26,12 @@ defined('MOODLE_INTERNAL') || die();
 
 $callbacks = [
     [
-        'hook'     => \core\hook\output\before_footer_html_generation::class,
+        'hook' => \core\hook\output\before_footer_html_generation::class,
         'callback' => \aiplacement_translate\hook_callbacks::class . '::before_footer_html_generation',
         'priority' => 0,
     ],
     [
-        'hook'     => \core\hook\output\after_http_headers::class,
+        'hook' => \core\hook\output\after_http_headers::class,
         'callback' => \aiplacement_translate\hook_callbacks::class . '::after_http_headers',
         'priority' => 0,
     ],

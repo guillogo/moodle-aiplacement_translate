@@ -17,18 +17,14 @@
 namespace aiplacement_translate;
 
 /**
- * Placement class — extends courseassist so we inherit its generate_text support.
+ * Class placement.
  *
  * @package    aiplacement_translate
- * @copyright  2026 Moodle Pty Ltd
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class placement extends \aiplacement_courseassist\placement {
 
-    /**
-     * We use generate_text — the same action every provider already supports.
-     * Translation is done by wrapping the prompt with translation instructions.
-     */
     #[\Override]
     public static function get_action_list(): array {
         return [

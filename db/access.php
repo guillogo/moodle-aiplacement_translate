@@ -15,24 +15,23 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Capabilities for aiplacement_translate.
+ * Capabilities for the aiplacement_translate plugin.
  *
  * @package    aiplacement_translate
- * @copyright  2026 Moodle Pty Ltd
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = [
     'aiplacement/translate:use' => [
-        'captype'      => 'write',
+        'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
-        'archetypes'   => [
-            'manager'        => CAP_ALLOW,
+        'archetypes' => [
+            'manager' => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW,
-            'teacher'        => CAP_ALLOW,
-            'student'        => CAP_ALLOW,
+            'teacher' => CAP_ALLOW,
+            'student' => CAP_ALLOW,
         ],
     ],
 ];

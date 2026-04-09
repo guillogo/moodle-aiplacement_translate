@@ -20,24 +20,25 @@ use core_ai\aiactions\generate_text;
 use core_ai\manager;
 
 /**
- * Utility helpers — reuses courseassist availability checks where possible.
+ * AI Placement translate utils.
  *
  * @package    aiplacement_translate
- * @copyright  2026 Moodle Pty Ltd
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class utils {
 
     /**
-     * Check the translate placement is usable.
+     * Check if the translate placement is usable.
      *
-     * @return bool
+     * @return bool True if translate placement is available, false otherwise.
      */
     public static function is_translate_available(): bool {
         // Re-use courseassist availability (checks plugin enabled).
         if (!\aiplacement_courseassist\utils::is_course_assist_available()) {
             return false;
         }
+
         // Our own plugin must also be enabled.
         [$plugintype, $pluginname] = explode(
             '_',
@@ -48,15 +49,16 @@ class utils {
         if (!$pluginmanager::is_plugin_enabled($pluginname)) {
             return false;
         }
+
         // At least one provider must support generate_text.
         $mgr = \core\di::get(manager::class);
         return $mgr->is_action_available(generate_text::class);
     }
 
     /**
-     * Target languages offered in the UI.
+     * Get target languages offered in the UI.
      *
-     * @return array [['code'=>'es','name'=>'Spanish'], …]
+     * @return array Array of ['code' => 'es', 'name' => 'Spanish'] items.
      */
     public static function get_target_languages(): array {
         $codes = [
@@ -76,8 +78,8 @@ class utils {
     /**
      * Resolve a language code to its display name.
      *
-     * @param string $code
-     * @return string
+     * @param string $code The language code.
+     * @return string The display name for the language.
      */
     public static function get_language_name(string $code): string {
         $key = 'lang_' . $code;

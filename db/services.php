@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Web-service definitions for aiplacement_translate.
+ * Translate Placement webservice definitions.
  *
  * @package    aiplacement_translate
- * @copyright  2026 Moodle Pty Ltd
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -26,11 +26,11 @@ defined('MOODLE_INTERNAL') || die();
 
 $functions = [
     'aiplacement_translate_translate_text' => [
-        'classname'   => 'aiplacement_translate\external\translate_text',
+        'classname' => 'aiplacement_translate\external\translate_text',
         'description' => 'Translate page content via AI',
-        'type'        => 'write',
-        'ajax'        => true,
-        'services'    => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+        'type' => 'write',
+        'ajax' => true,
+        'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],
     ],
 ];
 

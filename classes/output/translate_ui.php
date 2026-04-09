@@ -26,15 +26,15 @@ use core_ai\manager;
  * Injects the translate button and drawer into activity pages.
  *
  * @package    aiplacement_translate
- * @copyright  2026 Moodle Pty Ltd
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class translate_ui {
 
     /**
-     * Inject the translate drawer (language picker + response area).
+     * Inject the translate drawer (language picker and response area).
      *
-     * @param before_footer_html_generation $hook
+     * @param before_footer_html_generation $hook The hook instance.
      */
     public static function load_translate_ui(before_footer_html_generation $hook): void {
         global $PAGE, $OUTPUT, $USER;
@@ -44,7 +44,7 @@ class translate_ui {
         }
 
         $params = [
-            'userid'    => $USER->id,
+            'userid' => $USER->id,
             'contextid' => $PAGE->context->id,
             'languages' => utils::get_target_languages(),
         ];
@@ -59,7 +59,7 @@ class translate_ui {
      * the translate action into the existing course assist control when present,
      * with a fallback if course assist controls are unavailable.
      *
-     * @param after_http_headers $hook
+     * @param after_http_headers $hook The hook instance.
      */
     public static function action_buttons_handler(after_http_headers $hook): void {
         global $PAGE;
@@ -86,7 +86,7 @@ class translate_ui {
     /**
      * Common preflight checks (mirrors courseassist logic).
      *
-     * @return bool
+     * @return bool True if all checks pass.
      */
     private static function preflight_checks(): bool {
         global $DB, $PAGE;
@@ -94,24 +94,29 @@ class translate_ui {
         if (during_initial_install()) {
             return false;
         }
+
         if (!get_config('aiplacement_translate', 'version')) {
             return false;
         }
+
         // Bail out if the plugin capabilities have not been registered yet (pre-upgrade).
         if (!$DB->record_exists('capabilities', ['name' => 'aiplacement/translate:use'])) {
             return false;
         }
+
         if (in_array($PAGE->pagelayout, ['maintenance', 'print', 'redirect', 'embedded'])) {
             return false;
         }
+
         if ($PAGE->context->contextlevel != CONTEXT_MODULE) {
             return false;
         }
+
         if (!$PAGE->get_ai_visibility_hint()) {
             return false;
         }
+
         return utils::is_translate_available();
     }
 }
-
 

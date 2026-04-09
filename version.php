@@ -18,16 +18,16 @@
  * Version information for aiplacement_translate.
  *
  * @package    aiplacement_translate
- * @copyright  2026 Moodle Pty Ltd
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component  = 'aiplacement_translate';
-$plugin->version    = 2026040701;
-$plugin->requires   = 2025092600;
-$plugin->maturity   = MATURITY_ALPHA;
+$plugin->component = 'aiplacement_translate';
+$plugin->version = 2026040701;
+$plugin->requires = 2025092600;
+$plugin->maturity = MATURITY_ALPHA;
 $plugin->dependencies = [
     'aiplacement_courseassist' => ANY_VERSION,
 ];

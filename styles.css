@@ -1,3 +1,11 @@
+/**
+ * Styles for the AI translate placement.
+ *
+ * @package    aiplacement_translate
+ * @copyright  2026 Guillermo Gomez Arias <guigomar@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 .ai-translate-drawer {
     position: fixed;
     top: 60px;
@@ -9,10 +17,12 @@
     transition: right .2s ease, visibility .2s ease;
     visibility: hidden;
 }
+
 .ai-translate-drawer.show {
     right: 0;
     visibility: visible;
 }
+
 .translate-controls .icon {
     margin-right: 0;
 }
