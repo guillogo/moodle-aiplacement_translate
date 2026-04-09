@@ -112,7 +112,8 @@ class translate_ui {
             return false;
         }
 
-        if (!$PAGE->get_ai_visibility_hint()) {
+        // Available from Moodle 5.2 onward; skip check on older versions.
+        if (method_exists($PAGE, 'get_ai_visibility_hint') && !$PAGE->get_ai_visibility_hint()) {
             return false;
         }
 
