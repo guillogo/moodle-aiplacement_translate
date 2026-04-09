@@ -38,6 +38,9 @@ const SEL = {
     BTN: '.ai-translate-btn',
     PAGE: '#page',
     MAIN: '[role="main"]',
+    COURSEASSIST_CONTROLS: '.course-assist-controls',
+    COURSEASSIST_DROPDOWN: '.course-assist-controls .dropdown-menu',
+    COURSEASSIST_JUMPTO: '.course-assist-controls [data-region="jumpto"]',
 };
 
 const AITranslate = class {
@@ -49,7 +52,42 @@ const AITranslate = class {
         this.langSelect = document.querySelector(SEL.LANG);
         this.page = document.querySelector(SEL.PAGE);
         this.cancelled = false;
-        this._listen();
+        this._injectTrigger().finally(() => {
+            this._listen();
+        });
+    }
+
+    async _injectTrigger() {
+        if (document.querySelector(SEL.BTN)) {
+            return;
+        }
+
+        const dropdownMenu = document.querySelector(SEL.COURSEASSIST_DROPDOWN);
+        if (dropdownMenu) {
+            const html = await Templates.render('aiplacement_translate/action_button', {isdropdown: true});
+            dropdownMenu.insertAdjacentHTML('beforeend', html);
+            return;
+        }
+
+        const controls = document.querySelector(SEL.COURSEASSIST_CONTROLS);
+        if (controls) {
+            const html = await Templates.render('aiplacement_translate/action_button', {});
+            const jumpto = controls.querySelector(SEL.COURSEASSIST_JUMPTO);
+            if (jumpto) {
+                jumpto.insertAdjacentHTML('beforebegin', html);
+            } else {
+                controls.insertAdjacentHTML('afterbegin', html);
+            }
+            return;
+        }
+
+        // Fallback: if the course assist controls are unavailable for some reason,
+        // insert a standalone button before the main region.
+        const main = document.querySelector(SEL.MAIN);
+        if (main) {
+            const html = await Templates.render('aiplacement_translate/action_button', {});
+            main.insertAdjacentHTML('beforebegin', '<div class="translate-controls py-3">' + html + '</div>');
+        }
     }
 
     _listen() {
@@ -116,15 +154,13 @@ const AITranslate = class {
                 e.preventDefault();
                 this._close();
             });
-            return;
         }).catch(Notification.exception);
     }
 
     async _translate(lang) {
         this.cancelled = false;
         // Show loading — reuse courseassist template.
-        const loadingHtml = await Templates.render('aiplacement_courseassist/loading', {});
-        this.result.innerHTML = loadingHtml;
+        this.result.innerHTML = await Templates.render('aiplacement_courseassist/loading', {});
         const cancelBtn = this.result.querySelector('[data-action="cancel"]');
         cancelBtn?.addEventListener('click', (e) => {
             e.preventDefault();
@@ -164,8 +200,11 @@ const AITranslate = class {
         const langName = opt ? opt.textContent : lang;
         const heading = await getString('aitranslation', 'aiplacement_translate', langName);
         // Reuse courseassist response template.
-        const html = await Templates.render('aiplacement_courseassist/response', {content, heading, action: 'translate_text'});
-        this.result.innerHTML = html;
+        this.result.innerHTML = await Templates.render('aiplacement_courseassist/response', {
+            content,
+            heading,
+            action: 'translate_text',
+        });
 
         // Regenerate.
         this.result.querySelector('[data-action="regenerate"]')?.addEventListener('click', (e) => {
@@ -180,8 +219,10 @@ const AITranslate = class {
             msg = await getString('error:defaultmessage', 'core_ai');
         }
         // Reuse courseassist error template.
-        const html = await Templates.render('aiplacement_courseassist/error', {error, errorMessage: msg});
-        this.result.innerHTML = html;
+        this.result.innerHTML = await Templates.render('aiplacement_courseassist/error', {
+            error,
+            errorMessage: msg,
+        });
     }
 
     _getPageText() {

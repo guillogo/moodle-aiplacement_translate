@@ -52,12 +52,17 @@ class translate_ui {
     }
 
     /**
-     * Inject the "Translate" action button next to summarise / explain.
+     * Prepare the translate control integration.
+     *
+     * We do not render a separate visible button here because that leads to a
+     * duplicate control beside the course assist UI. The front-end code injects
+     * the translate action into the existing course assist control when present,
+     * with a fallback if course assist controls are unavailable.
      *
      * @param after_http_headers $hook
      */
     public static function action_buttons_handler(after_http_headers $hook): void {
-        global $PAGE, $OUTPUT;
+        global $PAGE;
 
         if (!self::preflight_checks()) {
             return;
@@ -73,7 +78,9 @@ class translate_ui {
             return;
         }
 
-        $hook->add_html($OUTPUT->render_from_template('aiplacement_translate/action_button', []));
+        // Intentionally no HTML output here.
+        // The drawer template bootstraps the JS module, which merges the
+        // translate action into the existing AI features control.
     }
 
     /**
