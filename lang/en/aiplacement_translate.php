@@ -51,4 +51,3 @@ $string['translate:use'] = 'Use AI translation';
 $string['translate_tooltips'] = 'Translate the page content into another language using AI';
 $string['translatepanellabel'] = 'AI translation panel';
 $string['translating'] = 'Translating…';
-

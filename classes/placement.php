@@ -24,7 +24,6 @@ namespace aiplacement_translate;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class placement extends \aiplacement_courseassist\placement {
-
     #[\Override]
     public static function get_action_list(): array {
         return [
@@ -32,4 +31,3 @@ class placement extends \aiplacement_courseassist\placement {
         ];
     }
 }
-
